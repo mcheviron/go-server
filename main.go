@@ -33,11 +33,11 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	// Will go fetch the index.html from the static folder because Go webservers are trained to look for it
 	// ./static will serve as the root of our server
-	webserver := http.FileServer(http.Dir("./static"))
+	fileserver := http.FileServer(http.Dir("./static"))
 
 	// This will handle requests to the root server by just passing it to the webserver, which is trained to look
 	// for the index.html, thus it will simply return the contents of the index.html
-	http.Handle("/", webserver)
+	http.Handle("/", fileserver)
 
 	// The next two functions map specific handlers/handle functions to specific requests
 	http.HandleFunc("/form", formHandler)
